@@ -3,6 +3,9 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import "./style.scss";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+library.add(faRightFromBracket);
 
 function App() {
   return (
