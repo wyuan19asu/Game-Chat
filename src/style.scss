@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.form__container {
+  background-color: rgb(196, 225, 250);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__wrapper {
+  position: relative;
+  background-color: white;
+  padding: 24px 60px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  .title {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    label {
+      font-size: 14px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #d8dadc;
+    }
+    #avatar {
+      display: flex;
+      align-items: center;
+      width: 150px;
+      cursor: pointer;
+    }
+    #file {
+      display: none;
+    }
+  }
+  .logo {
+    color: rgb(207, 66, 190);
+    font-weight: bold;
+    font-size: 24px;
+  }
+}
+
+// Register / Login buttons
+.signup__btn,
+.login__btn {
+  color: black;
+  height: 40px;
+  border-radius: 10px;
+  background-color: rgb(196, 225, 250);
+  border: 1px solid rgb(196, 225, 250);
+}
+.signup__btn:hover,
+.login__btn:hover {
+  cursor: pointer;
+}
+
+// Avatar upload image
+#avatar__img {
+  width: 40px;
+  margin-right: 20px;
+}
+
+// registering with google etc div
+.alt__register--wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .alt__register--text {
+    margin: 8px;
+  }
+  .left__line {
+    width: 90px;
+    border: 1px solid #d8dadc;
+  }
+  .right__line {
+    width: 90px;
+    border: 1px solid #d8dadc;
+  }
+}
+
+.alt__register--text,
+#login__text {
+  font-size: 14px;
+}
