@@ -110,3 +110,67 @@ a {
 #login__text {
   font-size: 14px;
 }
+
+.home {
+  background-color: rgb(196, 225, 250);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    max-width: 1280px;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    overflow: hidden;
+
+    .sidebar {
+      flex: 1;
+      height: 80%;
+      padding: 14px;
+    }
+    .nav__container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      margin: 14px 0;
+      .logo {
+        font-weight: bold;
+      }
+      .user {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      img {
+        background-color: white;
+        width: 20px;
+        height: 20px;
+        border: 1px solid white;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .logout__btn {
+        border: none;
+        background-color: rgb(196, 225, 250);
+      }
+      .logout__btn:hover {
+        cursor: pointer;
+      }
+      .logout__icon {
+        font-size: 16px;
+      }
+    }
+    .chat {
+      flex: 2;
+      border: 1px solid white;
+    }
+    .side__chats {
+      height: 100%;
+      border: 1px solid white;
+      border-radius: 10px;
+    }
+  }
+}
