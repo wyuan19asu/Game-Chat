@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +15,12 @@ a {
 }
 
 .form__container {
-  background-color: rgb(196, 225, 250);
+  // background-color: rgb(196, 225, 250);
+  background: radial-gradient(
+    circle,
+    rgba(255, 179, 179, 1) 0%,
+    rgba(166, 180, 255, 1) 100%
+  );
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -112,65 +117,165 @@ a {
 }
 
 .home {
-  background-color: rgb(196, 225, 250);
+  // background-color: rgb(196, 225, 250);
+  background: radial-gradient(
+    circle,
+    rgba(255, 179, 179, 1) 0%,
+    rgba(166, 180, 255, 1) 100%
+  );
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   .container {
     max-width: 1280px;
-    border: 1px solid white;
     border-radius: 10px;
     width: 80%;
     height: 80%;
     display: flex;
     overflow: hidden;
-
     .sidebar {
+      background-color: rgb(196, 225, 250);
       flex: 1;
-      height: 80%;
-      padding: 14px;
-    }
-    .nav__container {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row;
-      margin: 14px 0;
-      .logo {
-        font-weight: bold;
-      }
-      .user {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-      img {
-        background-color: white;
-        width: 20px;
-        height: 20px;
-        border: 1px solid white;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      .logout__btn {
-        border: none;
-        background-color: rgb(196, 225, 250);
-      }
-      .logout__btn:hover {
-        cursor: pointer;
-      }
-      .logout__icon {
-        font-size: 16px;
-      }
-    }
-    .chat {
-      flex: 2;
-      border: 1px solid white;
-    }
-    .side__chats {
       height: 100%;
-      border: 1px solid white;
-      border-radius: 10px;
+      padding: 14px;
+      .nav__container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 14px 0;
+        margin-bottom: 16px;
+        border-bottom: 1px solid white;
+        .logo {
+          font-weight: bold;
+        }
+        .user {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          img {
+            background-color: white;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          .logout__btn {
+            border: none;
+            background-color: rgb(196, 225, 250);
+            display: flex;
+            align-items: center;
+          }
+          .logout__btn:hover {
+            cursor: pointer;
+          }
+          .logout__icon {
+            font-size: 16px;
+          }
+        }
+      }
+      .search {
+        .search__bar {
+          input {
+            width: 100%;
+            border: 1px solid white;
+            border-radius: 20px;
+            padding: 8px;
+            margin-bottom: 16px;
+          }
+          input:focus-visible {
+            outline-color: white;
+          }
+        }
+        .user__chat {
+          display: flex;
+          align-items: center;
+          margin: 12px 0;
+          gap: 10px;
+          cursor: pointer;
+          transition: all 300ms ease;
+          border: 1px solid white;
+
+          &:hover,
+          &:active {
+            background-color: #1d75dd;
+            transition: all 300ms ease;
+          }
+
+          .userPic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
+      .side__chats {
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        .user__chat {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          transition: all 300ms ease;
+          border-bottom: 2px solid rgb(196, 225, 250);
+
+          &:hover,
+          &:active {
+            background-color: #1d75dd;
+            transition: all 300ms ease;
+          }
+          &:first-child {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+          }
+
+          &:last-child {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: none;
+          }
+          .userPic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            padding: 4px;
+          }
+          .user__chat--info {
+            span {
+              font-size: 14px;
+              font-weight: 500;
+            }
+            p {
+              font-size: 12px;
+              color: rgb(59, 59, 59);
+            }
+          }
+        }
+      }
+    }
+    .chat__info {
+      background-color: rgb(196, 225, 250);
+      flex: 2;
+      border-left: 1px solid white;
+      padding: 14px;
+      .chat {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px;
+        border-bottom: 1px solid white;
+        .chat__icons {
+          display: flex;
+          align-items: center;
+          .chat__icon {
+            margin-right: 12px;
+          }
+        }
+      }
     }
   }
 }
