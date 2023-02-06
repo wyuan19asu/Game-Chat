@@ -1,5 +1,7 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Messages from './Messages';
+import Input from './Input';
 
 export default function Chat() {
     return (
@@ -12,6 +14,8 @@ export default function Chat() {
                     <FontAwesomeIcon icon="fa-solid fa-ellipsis" className='chat__icon' />
                 </div>
             </div>
+            <Messages />
+            <Input />
         </div>
     )
 }
