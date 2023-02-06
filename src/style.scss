@@ -268,11 +268,64 @@ a {
         justify-content: space-between;
         padding: 14px;
         border-bottom: 1px solid white;
+        margin-bottom: 16px;
         .chat__icons {
           display: flex;
           align-items: center;
           .chat__icon {
-            margin-right: 12px;
+            margin-right: 16px;
+            font-size: 16px;
+            &:last-child {
+              margin: 0;
+            }
+          }
+        }
+      }
+      .messages {
+        background-color: white;
+        border-radius: 10px;
+        padding: 14px;
+        margin-bottom: 16px;
+        height: calc(100% - 140px);
+      }
+      .message__input {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .fileIcon {
+          font-size: 30px;
+        }
+        .message__inputBar {
+          background-color: white;
+          width: 100%;
+          height: 40px;
+          border: 1px solid #989ba1;
+          padding: 8px;
+          border-radius: 3px;
+          &:focus {
+            outline: white;
+          }
+        }
+        .message__send {
+          display: flex;
+          align-items: center;
+          .send__icons {
+            font-size: 24px;
+          }
+          #file {
+            display: none;
+          }
+          label {
+            display: flex;
+            align-items: center;
+          }
+          .send__messageBtn {
+            background-color: rgb(196, 225, 250);
+            border: none;
+          }
+          .file__img,
+          label {
+            margin-right: 20px;
           }
         }
       }
