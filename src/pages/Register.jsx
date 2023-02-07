@@ -20,6 +20,7 @@ export default function Register() {
         const user = userCredential.user;
         
         
+        
         // ...
       })
       .catch((error) => {
