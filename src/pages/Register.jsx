@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import avatar from "../images/avatar.svg";
-import { Link } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { db, auth, storage } from "../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 export default function Register() {
-  const handleSubmit = (e) => {
+  const [err, setErr] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const displayName = e.target[0].value;
     const email = e.target[1].value;
@@ -13,21 +18,58 @@ export default function Register() {
     const confirmPassword = e.target[3].value;
     const file = e.target[4].files[0];
 
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        
-        
-        
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    const validatePassword = () => {
+      let isValid = true;
+      if (password !== "" && confirmPassword !== "") {
+        if (password !== confirmPassword) {
+          isValid = false;
+          alert("Passwords does not match");
+        }
+      } else {
+        console.log("MATCH");
+      }
+      return isValid;
+    };
+
+    if (validatePassword()) {
+      try {
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        const storageRef = ref(storage, displayName);
+
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on(
+          (error) => {
+            // Handle unsuccessful uploads
+            setErr(true);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(
+              async (downloadURL) => {
+                await updateProfile(res.user, {
+                  displayName,
+                  photoURL: downloadURL,
+                });
+                await setDoc(doc(db, "users", res.user.uid), {
+                  uid: res.user.uid,
+                  displayName,
+                  email,
+                  photoURL: downloadURL,
+                });
+                await setDoc(db, "userChats", res.user.uid, {});
+                navigate("/");
+              } 
+            );
+          }
+        );
+      } catch (err) {
+        setErr(true);
+      }
+    }
   };
   return (
     <div className="form__container">
@@ -37,11 +79,11 @@ export default function Register() {
         <form action="" className="register__form" onSubmit={handleSubmit}>
           <label>
             Display name
-            <input type="text" placeholder="Display name" id="" />
+            <input type="text" placeholder="Display name" id="" required />
           </label>
           <label>
             Email
-            <input type="email" placeholder="Email" id="" />
+            <input type="email" placeholder="Email" id="" required />
           </label>
           <label>
             Password
@@ -49,6 +91,7 @@ export default function Register() {
               type="password"
               placeholder="Must be at least 8 characters"
               id="password"
+              required
             />
           </label>
           <label>
@@ -57,6 +100,7 @@ export default function Register() {
               type="password"
               placeholder="Confirm Password"
               id="confirm__pass"
+              required
             />
           </label>
           <label htmlFor="file" id="avatar">
@@ -65,6 +109,7 @@ export default function Register() {
             <input type="file" id="file" />
           </label>
           <button className="signup__btn">Sign up</button>
+          {err && <span>Something went wrong</span>}
         </form>
         <div className="alt__register--wrapper">
           <div className="left__line"></div>
