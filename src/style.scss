@@ -151,7 +151,6 @@ a {
     width: 80%;
     height: 80%;
     display: flex;
-    overflow: hidden;
     @include tablet() {
       width: 90%;
     }
@@ -305,6 +304,24 @@ a {
           }
         }
       }
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        &-track {
+          background: #f1f1f1;
+        }
+
+        &-thumb {
+          background: #888;
+          -webkit-border-radius: 5px;
+          border-radius: 5px;
+
+          &:hover {
+            background: #555;
+          }
+        }
+      }
       .messages {
         background-color: white;
         border-radius: 10px;
@@ -363,6 +380,8 @@ a {
         display: flex;
         align-items: center;
         gap: 20px;
+        background-color: white;
+        border-radius: 3px;
         .fileIcon {
           font-size: 30px;
         }
@@ -370,7 +389,7 @@ a {
           background-color: white;
           width: 100%;
           height: 40px;
-          border: 1px solid #989ba1;
+          border: none;
           padding: 8px;
           border-radius: 3px;
           &:focus {
@@ -391,10 +410,11 @@ a {
             align-items: center;
           }
           .send__messageBtn {
-            background-color: $lightblue;
+            background-color: white;
             display: flex;
             align-items: center;
             border: none;
+            margin-right: 12px;
           }
           .file__img,
           label {
