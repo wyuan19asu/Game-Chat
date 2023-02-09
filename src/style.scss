@@ -133,7 +133,9 @@ a {
 #login__text {
   font-size: 14px;
 }
-
+#somethingWrong, #pass__noMatch {
+  color: red;
+}
 .home {
   // background-color: $lightblue;
   background: radial-gradient(
