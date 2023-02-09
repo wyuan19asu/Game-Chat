@@ -9,6 +9,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 export default function Register() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
+  const passNoMatch = document.querySelector("#pass__noMatch");
+  console.log(passNoMatch);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ export default function Register() {
       if (password !== "" && confirmPassword !== "") {
         if (password !== confirmPassword) {
           isValid = false;
-          alert("Passwords does not match");
+          passNoMatch.textContent= "Passwords does not match";
         }
       } else {
         console.log("MATCH");
@@ -62,7 +65,7 @@ export default function Register() {
                 });
                 await setDoc(db, "userChats", res.user.uid, {});
                 navigate("/");
-              } 
+              }
             );
           }
         );
@@ -109,7 +112,8 @@ export default function Register() {
             <input type="file" id="file" />
           </label>
           <button className="signup__btn">Sign up</button>
-          {err && <span>Something went wrong</span>}
+          <div id="pass__noMatch"></div>
+          {err && <span id="somethingWrong">Something went wrong</span>}
         </form>
         <div className="alt__register--wrapper">
           <div className="left__line"></div>
