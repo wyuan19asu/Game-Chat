@@ -1,10 +1,17 @@
 import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { updateDoc, arrayUnion, Timestamp, doc } from "firebase/firestore";
-import { db } from "../firebase";
+import {
+  updateDoc,
+  arrayUnion,
+  Timestamp,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 export default function Input() {
   const [text, setText] = useState("");
@@ -16,17 +23,54 @@ export default function Input() {
 
   const handleSend = async () => {
     if (image) {
-      console.log("nothing");
+      const storageRef = ref(storage, uuid());
+
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
+        (error) => {
+          // Handle unsuccessful uploads
+          //   setErr(true);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateDoc(doc(db, "chats", data.chatId), {
+              messages: arrayUnion({
+                id: uuid(),
+                text,
+                senderId: currentUser.uid,
+                date: Timestamp.now(),
+                img: downloadURL,
+              }),
+            });
+          });
+        }
+      );
     } else {
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
-          id: uuid,
+          id: uuid(),
           text,
           senderId: currentUser.uid,
           date: Timestamp.now(),
         }),
       });
     }
+
+    await updateDoc(doc(db, "userChats", currentUser.uid), {
+      [data.chatId + ".lastMessage"]: {
+        text,
+      },
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
+    await updateDoc(doc(db, "userChats", data.user.uid), {
+      [data.chatId + ".lastMessage"]: {
+        text,
+      },
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
+
+    setText("");
+    setImage(null);
   };
   return (
     <div className="message__input">
@@ -35,6 +79,7 @@ export default function Input() {
         placeholder="Write a message..."
         className="message__inputBar"
         onChange={(e) => setText(e.target.value)}
+        value={text}
       />
       <div className="message__send">
         <FontAwesomeIcon
