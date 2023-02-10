@@ -133,7 +133,8 @@ a {
 #login__text {
   font-size: 14px;
 }
-#somethingWrong, #pass__noMatch {
+#somethingWrong,
+#pass__noMatch {
   color: red;
 }
 .home {
@@ -153,6 +154,7 @@ a {
     width: 80%;
     height: 80%;
     display: flex;
+    overflow: hidden;
     @include tablet() {
       width: 90%;
     }
