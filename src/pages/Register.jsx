@@ -24,7 +24,9 @@ export default function Register() {
       if (password !== "" && confirmPassword !== "") {
         if (password !== confirmPassword) {
           isValid = false;
-          passNoMatch.textContent= "Passwords does not match";
+          if (passNoMatch) {
+            passNoMatch.textContent = "Passwords does not match";
+          }
         }
       } else {
         console.log("MATCH");
