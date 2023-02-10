@@ -10,7 +10,6 @@ export default function Register() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
   const passNoMatch = document.querySelector("#pass__noMatch");
-  passNoMatch.textContent = "";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,10 +39,6 @@ export default function Register() {
 
         const uploadTask = uploadBytesResumable(storageRef, file);
 
-        // Register three observers:
-        // 1. 'state_changed' observer, called any time the state changes
-        // 2. Error observer, called on failure
-        // 3. Completion observer, called on successful completion
         uploadTask.on(
           (error) => {
             // Handle unsuccessful uploads
@@ -111,7 +106,7 @@ export default function Register() {
             <input type="file" id="file" />
           </label>
           <button className="signup__btn">Sign up</button>
-          <div id="pass__noMatch"></div>
+          <p id="pass__noMatch"></p>
           {err && <span id="somethingWrong">Something went wrong</span>}
         </form>
         <div className="alt__register--wrapper">
