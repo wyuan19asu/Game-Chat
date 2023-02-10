@@ -10,6 +10,7 @@ export default function Register() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
   const passNoMatch = document.querySelector("#pass__noMatch");
+  passNoMatch.textContent = "";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +25,7 @@ export default function Register() {
       if (password !== "" && confirmPassword !== "") {
         if (password !== confirmPassword) {
           isValid = false;
-          if (passNoMatch) {
-            passNoMatch.textContent = "Passwords does not match";
-          }
+          passNoMatch.textContent = "Passwords does not match";
         }
       } else {
         console.log("MATCH");
