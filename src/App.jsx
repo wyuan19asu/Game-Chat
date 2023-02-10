@@ -27,7 +27,7 @@ library.add(
   faFileImage,
   faPaperPlane
 );
-import { AuthContext } from "./components/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
