@@ -10,8 +10,6 @@ export default function Register() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
   const passNoMatch = document.querySelector("#pass__noMatch");
-  console.log(passNoMatch);
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,7 +61,7 @@ export default function Register() {
                   email,
                   photoURL: downloadURL,
                 });
-                await setDoc(db, "userChats", res.user.uid, {});
+                await setDoc(doc(db, "userChats", res.user.uid), {});
                 navigate("/");
               }
             );
