@@ -43,13 +43,13 @@ export default function Chats() {
             </div>
           </div>
         ))}
-      <div className="user__chat">
+      {/* <div className="user__chat">
         <img src={profilePic} alt="" className="userPic" />
         <div className="user__chat--info">
           <span>Ryan</span>
           <p>Hello</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
