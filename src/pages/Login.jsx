@@ -20,6 +20,7 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (err) {
+      console.log(err.message);
       setErr(true);
     }
   };
