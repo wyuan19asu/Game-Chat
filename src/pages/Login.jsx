@@ -37,6 +37,11 @@ export default function Login() {
       navigate("/");
     }
   }, [auth.currentUser]);
+
+  const notImplemented = () => {
+    alert("Not implemented yet!");
+  };
+
   return (
     <div className="form__container">
       <div className="form__wrapper">
@@ -65,7 +70,7 @@ export default function Login() {
             <div className="right__line"></div>
           </div>
           <div className="alt__sign--buttons">
-            <GoogleButton onClick={handleGoogleSubmit} />
+            <GoogleButton onClick={notImplemented} />
           </div>
         </div>
         <p id="login__text">
