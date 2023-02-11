@@ -110,6 +110,32 @@ a {
   margin-right: 20px;
 }
 
+.alt__login--wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .signIn__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .alt__login--text {
+    margin: 8px;
+  }
+  .left__line {
+    width: 90px;
+    border: 1px solid $gray;
+  }
+  .right__line {
+    width: 90px;
+    border: 1px solid $gray;
+  }
+  .alt__sign--buttons {
+    margin: 16px 0;
+  }
+}
+
 // registering with google etc div
 .alt__register--wrapper {
   display: flex;
@@ -129,7 +155,7 @@ a {
   }
 }
 
-.alt__register--text,
+.al .alt__register--text,
 #login__text {
   font-size: 14px;
 }
