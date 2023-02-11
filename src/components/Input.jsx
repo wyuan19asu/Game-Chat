@@ -46,32 +46,48 @@ export default function Input() {
         }
       );
     } else {
-      await updateDoc(doc(db, "chats", data.chatId), {
-        messages: arrayUnion({
-          id: uuid(),
+      if (text !== "") {
+        await updateDoc(doc(db, "chats", data.chatId), {
+          messages: arrayUnion({
+            id: uuid(),
+            text,
+            senderId: currentUser.uid,
+            date: Timestamp.now(),
+          }),
+        });
+      }
+    }
+    if (text !== "") {
+      await updateDoc(doc(db, "userChats", currentUser.uid), {
+        [data.chatId + ".lastMessage"]: {
           text,
-          senderId: currentUser.uid,
-          date: Timestamp.now(),
-        }),
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
+      await updateDoc(doc(db, "userChats", data.user.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
       });
     }
-
-    await updateDoc(doc(db, "userChats", currentUser.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
 
     setText("");
     setImage(null);
   };
+
+  const handleKey = (e) => {
+    if ((e.code === "Enter" && text !== "") || image) {
+      handleSend();
+      // setText("");
+      // setImage(null);
+    }
+  };
+
+  const notImplemented = () => {
+    alert("Not implemented yet!");
+  };
+
   return (
     <div className="message__input">
       <input
@@ -80,12 +96,18 @@ export default function Input() {
         className="message__inputBar"
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKey}
       />
       <div className="message__send">
-        <FontAwesomeIcon
-          icon="fa-regular fa-file"
-          className="send__icons file__img"
-        />
+        <button type="button" onClick={notImplemented} id="file__iconBtn">
+          <FontAwesomeIcon
+            icon="fa-regular fa-file"
+            className="send__icons file__img"
+          />
+        </button>
+
+        {/* <input type="file" name="file" value="" />
+        <label htmlFor="file" id="file__icon"></label> */}
         <input
           type="file"
           id="file"

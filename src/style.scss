@@ -163,6 +163,9 @@ a {
       flex: 1;
       height: 100%;
       padding: 14px;
+      #inbox__header {
+        margin-bottom: 12px;
+      }
       .nav__container {
         display: flex;
         justify-content: space-between;
@@ -208,7 +211,7 @@ a {
             width: 100%;
             border: 1px solid white;
             border-radius: 20px;
-            padding: 8px;
+            padding: 8px 14px;
             margin-bottom: 16px;
           }
           input:focus-visible {
@@ -249,6 +252,7 @@ a {
           cursor: pointer;
           transition: all 300ms ease;
           border-bottom: 2px solid $lightblue;
+          padding-bottom: 4px;
 
           &:hover,
           &:active {
@@ -270,7 +274,7 @@ a {
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            padding: 4px;
+            padding: 2px;
           }
           .user__chat--info {
             span {
@@ -302,6 +306,7 @@ a {
           .chat__icon {
             margin-right: 16px;
             font-size: 16px;
+            cursor: pointer;
             &:last-child {
               margin: 0;
             }
@@ -329,13 +334,13 @@ a {
       .messages {
         background-color: white;
         border-radius: 10px;
-        padding: 14px;
+        padding: 16px;
         margin-bottom: 16px;
         height: calc(100% - 140px);
         overflow-y: scroll;
         .message {
           display: flex;
-          gap: 20px;
+          gap: 16px;
           margin-bottom: 24px;
           .message__info {
             display: flex;
@@ -359,7 +364,7 @@ a {
             }
             p {
               color: #555758;
-              padding: 8px 20px;
+              padding: 8px 16px;
               background-color: white;
               border: 1px solid #1d75dd;
               border-radius: 0px 10px 10px 10px;
@@ -409,6 +414,18 @@ a {
           #file {
             display: none;
           }
+          #file__iconBtn {
+            background-color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+          }
+          .file__img {
+            cursor: pointer;
+          }
+          #image__icon {
+            cursor: pointer;
+          }
           label {
             display: flex;
             align-items: center;
@@ -419,6 +436,7 @@ a {
             align-items: center;
             border: none;
             margin-right: 12px;
+            cursor: pointer;
           }
           .file__img,
           label {
