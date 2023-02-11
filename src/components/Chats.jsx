@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import profilePic from "../images/RR.jpg";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
