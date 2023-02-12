@@ -172,6 +172,9 @@ a {
   p {
     font-size: 12px;
     color: rgb(59, 59, 59);
+    max-width: 36ch;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 
@@ -401,6 +404,7 @@ a {
               border: 1px solid #1d75dd;
               border-radius: 0px 10px 10px 10px;
               max-width: max-content;
+              word-break: break-all;
             }
           }
           &.owner {
@@ -412,6 +416,7 @@ a {
                 background-color: #d1e6ff;
                 border: none;
                 border-radius: 10px 0 10px 10px;
+                word-break: break-all;
               }
             }
           }
