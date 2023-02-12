@@ -71,7 +71,7 @@ export default function Login() {
             <div className="right__line"></div>
           </div>
           <div className="alt__sign--buttons">
-            <GoogleButton onClick={notImplemented} />
+            <GoogleButton onClick={handleGoogleSubmit} />
           </div>
         </div>
         <p id="login__text">
