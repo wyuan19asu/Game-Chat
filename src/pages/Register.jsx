@@ -35,9 +35,9 @@ export default function Register() {
     if (validatePassword()) {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        const storageRef = ref(storage, displayName);
+        const storageRef = await ref(storage, displayName);
 
-        const uploadTask = uploadBytesResumable(storageRef, file);
+        const uploadTask = await uploadBytesResumable(storageRef, file);
 
         uploadTask.on(
           (error) => {
